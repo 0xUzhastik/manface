@@ -1,0 +1,174 @@
+<html><head><base href="https://manface.coin/" />
+<title>MANFACE Coin Interface</title>
+<style>
+  body {
+    background-color: #C0C0C0;
+    font-family: 'MS Sans Serif', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  .header-image {
+    width: 600px;
+    height: 200px;
+    margin-bottom: 20px;
+    object-fit: cover;
+  }
+  .window {
+    background-color: #C0C0C0;
+    border: 2px outset #FFFFFF;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    padding: 2px;
+    width: 300px;
+    margin-bottom: 10px;
+    z-index: 10;
+    position: relative;
+  }
+  .title-bar {
+    background: linear-gradient(to right, #000080, #1084d0);
+    color: white;
+    padding: 3px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .title-bar-controls {
+    display: flex;
+  }
+  .title-bar-controls button {
+    width: 16px;
+    height: 16px;
+    background-color: #C0C0C0;
+    border: 1px outset #FFFFFF;
+    margin-left: 2px;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+  }
+  .content {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  button {
+    width: 100%;
+    background-color: #C0C0C0;
+    border: 2px outset #FFFFFF;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  button:active {
+    border-style: inset;
+  }
+  .full-width {
+    grid-column: 1 / -1;
+  }
+  .contract {
+    word-break: break-all;
+    font-size: 12px;
+    background-color: white;
+    border: 1px inset #808080;
+    padding: 5px;
+  }
+  .flying-image {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+  <img src="https://i.ibb.co/hcCCxTm/manfacetext.png" alt="MANFACE Coin Header" class="header-image">
+
+  <div class="window">
+    <div class="title-bar">
+      <span>MANFACE Coin Interface</span>
+      <div class="title-bar-controls">
+        <button>_</button>
+        <button>□</button>
+        <button>X</button>
+      </div>
+    </div>
+    <div class="content">
+      <button onclick="location.href='http://www.x.com/manface'" type="button">Twitter</button>
+      <button onclick="location.href='http://www.t.me/manface'" type="button">Telegram</button>
+      <button onclick="location.href='http://www.dexscreener.com/solana/'" type="button">Chart</button>
+      <button onclick="location.href='http://www.jup.ag'" type="button">Buy</button>
+      <button>CMC SOON</button>
+      <button>CG SOON</button>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="title-bar">
+      <span>Contract</span>
+    </div>
+    <div class="content">
+      <div class="contract full-width">
+        MFa9QrsFnogw2Sh3WMmwASFL9LNu6FhdDqwE1ab2tB
+      </div>
+      <button class="full-width">Copy Contract</button>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', function() {
+        if (this.textContent === 'Copy Contract') {
+          const contract = document.querySelector('.contract').textContent.trim();
+          navigator.clipboard.writeText(contract).then(() => {
+            alert('Contract address copied to clipboard!');
+          });
+        } else {
+        }
+      });
+    });
+
+    function createFlyingImage() {
+      const img = document.createElement('img');
+      img.src = 'https://tr.rbxcdn.com/092b0a38cbe3dfcefc57e40d39014931/420/420/Image/Png';
+      img.alt = 'Flying MANFACE coin';
+      img.className = 'flying-image';
+      document.body.appendChild(img);
+      return img;
+    }
+
+    function animateImage(img) {
+      const maxX = window.innerWidth - img.width;
+      const maxY = window.innerHeight - img.height;
+
+      function move() {
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+        const duration = Math.random() * 3000 + 2000; // 2-5 seconds
+
+        img.style.transition = `all ${duration}ms ease-in-out`;
+        img.style.left = `${newX}px`;
+        img.style.top = `${newY}px`;
+
+        setTimeout(move, duration);
+      }
+
+      move();
+    }
+
+    // Create and animate 10 images
+    for (let i = 0; i < 10; i++) {
+      const img = createFlyingImage();
+      animateImage(img);
+    }
+  </script>
+</body>
+</html>
