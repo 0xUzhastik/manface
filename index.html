@@ -1,4 +1,6 @@
-<html><head><base href="https://manface.co/" />
+<html>
+<head>
+<base href="https://manface.co/" />
 <title>MANFACE</title>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -7,7 +9,8 @@
   body {
     background-color: #C0C0C0;
     background-image: url('https://i.ibb.co/cNt1HyH/roblox-screenshot1.png');
-    background-size: cover; /* Resize the background image to cover the entire container */
+    background-size: cover;
+    background-position: center;
     font-family: 'MS Sans Serif', sans-serif;
     display: flex;
     flex-direction: column;
@@ -19,12 +22,14 @@
     box-sizing: border-box;
     overflow-x: hidden;
   }
+
   .header-image {
     width: 600px;
     height: 200px;
     margin-bottom: 20px;
     object-fit: cover;
   }
+
   .window {
     background-color: #C0C0C0;
     border: 2px outset #FFFFFF;
@@ -35,6 +40,7 @@
     z-index: 10;
     position: relative;
   }
+
   .title-bar {
     background: linear-gradient(to right, #000080, #1084d0);
     color: white;
@@ -44,9 +50,11 @@
     justify-content: space-between;
     align-items: center;
   }
+
   .title-bar-controls {
     display: flex;
   }
+
   .title-bar-controls button {
     width: 16px;
     height: 16px;
@@ -59,12 +67,14 @@
     justify-content: center;
     color: black;
   }
+
   .content {
     padding: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
+
   button {
     width: 100%;
     background-color: #C0C0C0;
@@ -73,12 +83,15 @@
     text-align: center;
     cursor: pointer;
   }
+
   button:active {
     border-style: inset;
   }
+
   .full-width {
     grid-column: 1 / -1;
   }
+
   .contract {
     word-break: break-all;
     font-size: 12px;
@@ -86,11 +99,29 @@
     border: 1px inset #808080;
     padding: 5px;
   }
+
   .flying-image {
     position: fixed;
-    width: 50px;
-    height: 50px;
+    width: 100px; /* Increased size */
+    height: 100px; /* Increased size */
     z-index: 1;
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
+      background-position: center;
+    }
+
+    .window {
+      width: 90%;
+    }
+
+    .header-image {
+      width: 100%;
+      height: auto;
+    }
   }
 </style>
 </head>
@@ -136,7 +167,6 @@
           navigator.clipboard.writeText(contract).then(() => {
             alert('Contract address copied to clipboard!');
           });
-        } else {
         }
       });
     });
@@ -157,7 +187,7 @@
       function move() {
         const newX = Math.random() * maxX;
         const newY = Math.random() * maxY;
-        const duration = Math.random() * 3000 + 2000; // 2-5 seconds
+        const duration = Math.random() * 3000 + 2000;
 
         img.style.transition = `all ${duration}ms ease-in-out`;
         img.style.left = `${newX}px`;
@@ -169,7 +199,6 @@
       move();
     }
 
-    // Create and animate 10 images
     for (let i = 0; i < 10; i++) {
       const img = createFlyingImage();
       animateImage(img);
